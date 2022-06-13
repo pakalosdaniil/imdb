@@ -1,3 +1,65 @@
 {
-  "movies": []
+  "movies": [
+    {
+      "title": "The Mandalorian",
+      "description": "The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic.",
+      "rating": 8.7,
+      "cover": "https://cdn.europosters.eu/image/750/posters/star-wars-the-mandalorian-nightfall-i103406.jpg",
+      "trailer": "aOC8E8z_ifw",
+      "year": 2019,
+      "id": 1
+    },
+    {
+      "title": "Chip 'n Dale",
+      "description": "Thirty years after their popular television show ended, chipmunks Chip and Dale live very different lives. When a cast member from the original series mysteriously disappears, the pair must reunite to save their friend.",
+      "rating": 7,
+      "cover": "https://preview.redd.it/vry5498uw2w81.jpg?width=640&crop=smart&auto=webp&s=0651288d0b50c1ecba79e5690754e533e0de2115",
+      "year": 2022,
+      "trailer": "VkDfyR9QaD4",
+      "id": 2
+    },
+    {
+      "title": "Gravity Falls",
+      "description": "Twin siblings Dipper and Mabel Pines spend the summer at their great-uncle's tourist trap in the enigmatic Gravity Falls, Oregon.",
+      "rating": 8.9,
+      "cover": "https://i.pinimg.com/originals/da/96/85/da968589f286eae3bd43c2cc14ae0371.jpg",
+      "year": 2012,
+      "trailer": "yfUDIPUETUg",
+      "id": 3
+    },
+    {
+      "title": "dsf",
+      "year": 231,
+      "description": "sdfsd",
+      "rating": 1,
+      "cover": "dsf",
+      "trailer": "sdf",
+      "id": 6
+    },
+    {
+      "title": "wdas",
+      "year": 123,
+      "description": "wdas",
+      "rating": 1,
+      "cover": "sasd",
+      "trailer": "asdd",
+      "id": 7
+    },
+    {
+      "title": "Mickey Mouse",
+      "rating": 1,
+      "description": "Disney Channel",
+      "price": 7.16,
+      "image": "https://cdn.europosters.eu/image/750/posters/mickey-mouse-classic-i1428.jpg",
+      "id": 4
+    },
+    {
+      "title": "Duck Tales",
+      "rating": 1,
+      "description": "Disney Channel",
+      "price": 6.46,
+      "image": "https://64.media.tumblr.com/cb475885aad4fcdd12be5941029727c5/tumblr_oigtz9wJwu1rnvm7bo1_1280.jpg",
+      "id": 5
+    }
+  ]
 }
