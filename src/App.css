@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.MuiCardHeader-title {
+  font-size: 17px !important;
+}
+
+@media (max-width: 1200px) {
+  .MuiCardMedia-img {
+    object-fit: fill !important;
+  }
+}

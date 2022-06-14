@@ -1,32 +1,39 @@
 import { Box, Button, Container, Pagination } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { moviesContext } from "../../Contexts/moviesContext";
 import MovieCard from "../MovieCard/MovieCard";
+import { yellow, grey, brown } from "@mui/material/colors";
 
 const MoviesList = () => {
   const { getMovies, movies, pages } = useContext(moviesContext);
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setSearchParams({
+      _page: page,
+      _limit: 3,
+    });
+  }, [page]);
+
+  useEffect(() => {
+    getMovies();
+  }, [searchParams]);
 
   useEffect(() => {
     getMovies();
   }, []);
   return (
     <Container>
-      <div
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "space-between",
         }}>
-        <Button
-          variant="outlined"
-          style={{ margin: "30px" }}
-          onClick={() => navigate("/add-movie")}>
-          +
-        </Button>
-      </div>
+      </div> */}
       <Box
+        sx={{ bgcolor: grey[200] }}
         display={"flex"}
         flexWrap={"wrap"}
         justifyContent={"center"}
@@ -35,12 +42,14 @@ const MoviesList = () => {
           <MovieCard key={item.id} item={item} />
         ))}
       </Box>
-      <Box style={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        style={{ display: "flex", justifyContent: "center" }}
+        sx={{ bgcolor: grey[200] }}>
         <Pagination
           page={page}
           count={isNaN(pages) ? 0 : pages}
-          variant="outlined"
           shape="rounded"
+          size="large"
           onChange={(e, value) => setPage(value)}
         />
       </Box>
@@ -49,3 +58,5 @@ const MoviesList = () => {
 };
 
 export default MoviesList;
+
+<Pagination count={10} color="primary" />;

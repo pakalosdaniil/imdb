@@ -97,7 +97,7 @@ const WatchedListContextProvider = ({ children }) => {
 
   function removeMovieFromWatchedList(id) {
     let watchedList = JSON.parse(localStorage.getItem("watchedList"));
-    watchedList.movies = watchedList.movies.filter(item => item.id !== id);
+    watchedList.movies = watchedList.movies.filter(item => item.item.id !== id);
     localStorage.setItem("watchedList", JSON.stringify(watchedList));
     getWatchedList();
   }

@@ -13,7 +13,6 @@ const INITIAL_STATE = {
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "GET_MOVIES":
-      console.log(action.payload.data);
       return {
         ...state,
         movies: action.payload.data,

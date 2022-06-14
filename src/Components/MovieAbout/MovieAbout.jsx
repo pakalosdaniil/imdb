@@ -9,50 +9,85 @@ import {
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { moviesContext } from "../../Contexts/moviesContext";
+import YouTube from "react-youtube";
 
-const MovieAbout = () => {
+const MovieAbout = ({}) => {
   const { getOneMovie, oneMovie } = useContext(moviesContext);
   const params = useParams();
   const { id } = useParams();
+
   useEffect(() => {
     getOneMovie(id);
   }, []);
 
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
-          Shop
-        </Link>
-        <Link underline="hover" color="inherit" href="/products">
-          Products
-        </Link>
-        <Typography color="GrayText.primary"> Info </Typography>
-      </Breadcrumbs>
-      <Container>
-        {oneMovie ? (
+      {oneMovie ? (
+        <>
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              marginLeft: "220px",
+              marginRight: "0",
+            }}>
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              alignItems={"center"}
+              paddingTop={"40px"}
+              textAlign={"center"}>
+              <Typography marginBottom={"20px"} variant="h5">
+                {oneMovie.title}
+              </Typography>
+
+              <Paper style={{ width: "283px", height: "424px" }} elevation={3}>
+                <img
+                  style={{
+                    borderRadius: "2px",
+                    width: "283px",
+                    height: "425px",
+                  }}
+                  src={oneMovie.cover}
+                  width="100%"
+                  alt="product-photo"
+                />
+              </Paper>
+            </Box>
+            <Box paddingTop={"40px"} marginLeft={"15px"}>
+              <Typography marginBottom={"20px"} variant="h5">
+                ✩ {" ✩ " + oneMovie.rating}
+              </Typography>
+
+              <YouTube
+                videoId={oneMovie.trailer}
+                opts={{
+                  height: "425px",
+                  width: "650px",
+                  playerVars: {
+                    src: oneMovie.trailer,
+                    autoplay: 0,
+                  },
+                }}
+              />
+            </Box>
+          </Container>
           <Box
             display={"flex"}
             flexDirection={"column"}
             alignItems={"center"}
-            paddingTop={"40px"}
-            textAlign={"center"}>
-            <Paper style={{ width: "40%" }} elevation={3}>
-              <img
-                style={{ borderRadius: "5px" }}
-                src={oneMovie.cover}
-                width="100%"
-                alt="product-photo"
-              />
+            textAlign={"left"}
+            marginTop={"20px"}
+            maxWidth={"1000px"}
+            marginLeft={"220px"}>
+            <Paper>
+              <Typography padding={"20px"} variant="h5">
+                {oneMovie.description}
+              </Typography>
             </Paper>
-            <Typography variant="h5">{oneMovie.title}</Typography>
-            <Typography style={{ maxWidth: "400px" }} variant="h5">
-              {oneMovie.description}
-            </Typography>
-            <Typography variant="h5">{oneMovie.rating}</Typography>
           </Box>
-        ) : null}
-      </Container>
+        </>
+      ) : null}
     </>
   );
 };

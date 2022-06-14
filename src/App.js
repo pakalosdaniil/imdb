@@ -4,6 +4,7 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Routing from "./Routing";
 
+import "./App.css";
 import AuthContextProvider from "./Contexts/watchedListContext";
 import WatchedListContextProvider from "./Contexts/watchedListContext";
 

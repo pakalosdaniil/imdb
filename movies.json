@@ -19,6 +19,15 @@
       "id": 2
     },
     {
+      "title": "The Book of Boba Fett",
+      "year": 2021,
+      "description": "Bounty hunter Boba Fett and mercenary Fennec Shand navigate the underworld when they return to Tatooine to claim Jabba the Hutt's old turf.",
+      "rating": 7.4,
+      "cover": "https://sportshub.cbsistatic.com/i/2021/11/01/0fde9e72-9141-4879-a719-8b0f9a607fa9/the-book-of-boba-fett-poster-key-art.jpg?auto=webp&width=1688&height=2500&crop=0.675:1,smart",
+      "trailer": "rOJ1cw6mohw",
+      "id": 4
+    },
+    {
       "title": "Gravity Falls",
       "description": "Twin siblings Dipper and Mabel Pines spend the summer at their great-uncle's tourist trap in the enigmatic Gravity Falls, Oregon.",
       "rating": 8.9,
@@ -26,40 +35,6 @@
       "year": 2012,
       "trailer": "yfUDIPUETUg",
       "id": 3
-    },
-    {
-      "title": "dsf",
-      "year": 231,
-      "description": "sdfsd",
-      "rating": 1,
-      "cover": "dsf",
-      "trailer": "sdf",
-      "id": 6
-    },
-    {
-      "title": "wdas",
-      "year": 123,
-      "description": "wdas",
-      "rating": 1,
-      "cover": "sasd",
-      "trailer": "asdd",
-      "id": 7
-    },
-    {
-      "title": "Mickey Mouse",
-      "rating": 1,
-      "description": "Disney Channel",
-      "price": 7.16,
-      "image": "https://cdn.europosters.eu/image/750/posters/mickey-mouse-classic-i1428.jpg",
-      "id": 4
-    },
-    {
-      "title": "Duck Tales",
-      "rating": 1,
-      "description": "Disney Channel",
-      "price": 6.46,
-      "image": "https://64.media.tumblr.com/cb475885aad4fcdd12be5941029727c5/tumblr_oigtz9wJwu1rnvm7bo1_1280.jpg",
-      "id": 5
     }
   ]
 }

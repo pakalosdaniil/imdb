@@ -7,6 +7,7 @@ import WatchedList from "./Components/WathedList/WatchedList";
 import AddMovieForm from "./Components/AddMovieForm/AddMovieForm";
 import LogInForm from "./Components/LogInForm/LogInForm";
 import SignUpForm from "./Components/SignUpForm/SignUpForm";
+import PaymentForm from "./Components/PaymentForm/PaymentForm";
 
 const Routing = () => {
   return (
@@ -20,6 +21,7 @@ const Routing = () => {
         <Route path="/watched-list" element={<WatchedList />} />
         <Route path="/login" element={<LogInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/payment" element={<PaymentForm />} />
       </Routes>
     </div>
   );
