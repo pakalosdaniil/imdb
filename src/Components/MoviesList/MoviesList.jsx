@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { moviesContext } from "../../Contexts/moviesContext";
 import MovieCard from "../MovieCard/MovieCard";
-import { yellow, grey, brown } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 
 const MoviesList = () => {
   const { getMovies, movies, pages } = useContext(moviesContext);
@@ -26,12 +26,6 @@ const MoviesList = () => {
   }, []);
   return (
     <Container>
-      {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}>
-      </div> */}
       <Box
         sx={{ bgcolor: grey[200] }}
         display={"flex"}

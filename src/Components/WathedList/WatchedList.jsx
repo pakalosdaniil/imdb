@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Container, IconButton, Box, Typography } from "@mui/material";
+import { Container, IconButton, Typography } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import InfoIcon from "@mui/icons-material/Info";
 import Table from "@mui/material/Table";
@@ -11,16 +11,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 import { watchedListContext } from "../../Contexts/watchedListContext";
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import { grey } from "@mui/material/colors";
+
+import ShareList from "../ShareList/ShareList";
 
 const WatchedList = () => {
   const navigate = useNavigate();
@@ -30,26 +23,26 @@ const WatchedList = () => {
     getWatchedList();
   }, []);
 
-  const actions = [
-    { icon: <SaveIcon />, name: "Save" },
-    { icon: <TwitterIcon />, name: "Twitter" },
-    { icon: <InstagramIcon />, name: "Instagram" },
-    { icon: <FacebookIcon />, name: "Facebook" },
-  ];
-
   return (
     <>
-      <Container style={{ maxWidth: "900px" }}>
+      <IconButton sx={{ display: { xs: "none", sm: "none", lg: "flex" } }}>
+        <ShareList />
+      </IconButton>
+      <Container
+        style={{ maxWidth: "900px", height: "705px" }}
+        sx={{
+          bgcolor: grey[200],
+        }}>
         <Typography style={{ margin: "15px" }} variant="h6">
           Your Watchlist
         </Typography>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ maxidth: "100%" }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Movie</TableCell>
-                <TableCell align="right">Year</TableCell>
-                <TableCell align="right">Rating</TableCell>
+                <TableCell align="center">Year</TableCell>
+                <TableCell align="center">Rating</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -60,19 +53,30 @@ const WatchedList = () => {
                     sx={{
                       "&:last-child td, &:last-child th": { border: 0 },
                     }}>
-                    <TableCell component="th" scope="row">
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={{ fontSize: "14px" }}>
                       {row.item.title}
                     </TableCell>
-                    <TableCell align="right">{row.item.year}</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "13px" }}>
+                      {row.item.year}
+                    </TableCell>
 
-                    <TableCell align="right">{row.item.rating}</TableCell>
-                    <TableCell align="center">
+                    <TableCell align="center" sx={{ fontSize: "13px" }}>
+                      {row.item.rating}
+                    </TableCell>
+                    <TableCell align="center" sx={{ padding: "0" }}>
                       <IconButton
                         onClick={() => removeMovieFromWatchedList(row.item.id)}
                         aria-label="delete">
                         <DeleteForeverIcon />
                       </IconButton>
                       <IconButton
+                        sx={{
+                          width: "10px",
+                          height: "10px",
+                        }}
                         onClick={() => navigate(`/movies/${row.item.id}`)}>
                         <InfoIcon />
                       </IconButton>
@@ -82,27 +86,7 @@ const WatchedList = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* <Box
-          style={{
-            margin: "30px 20px",
-            display: "flex",
-            justifyContent: "flex-end",
-          }}></Box> */}
       </Container>
-      <Box sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}>
-        <SpeedDial
-          ariaLabel="SpeedDial basic example"
-          sx={{ position: "absolute", bottom: 26, right: 86 }}
-          icon={<ShareIcon />}>
-          {actions.map(action => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-            />
-          ))}
-        </SpeedDial>
-      </Box>
     </>
   );
 };

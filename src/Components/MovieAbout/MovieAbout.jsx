@@ -28,10 +28,12 @@ const MovieAbout = ({}) => {
             sx={{
               display: "flex",
               flexDirection: "row",
-              marginLeft: "220px",
               marginRight: "0",
             }}>
             <Box
+              sx={{
+                margin: { xs: "0 auto", sm: "0 auto", md: "0 auto", lg: "0" },
+              }}
               display={"flex"}
               flexDirection={"column"}
               alignItems={"center"}
@@ -39,6 +41,11 @@ const MovieAbout = ({}) => {
               textAlign={"center"}>
               <Typography marginBottom={"20px"} variant="h5">
                 {oneMovie.title}
+                <Typography
+                  paragraph
+                  sx={{ display: { xs: "block", sm: "block", lg: "none" } }}>
+                  ✩ {oneMovie.rating}{" "}
+                </Typography>
               </Typography>
 
               <Paper style={{ width: "283px", height: "424px" }} elevation={3}>
@@ -54,22 +61,28 @@ const MovieAbout = ({}) => {
                 />
               </Paper>
             </Box>
-            <Box paddingTop={"40px"} marginLeft={"15px"}>
+            <Box
+              paddingTop={"40px"}
+              marginLeft={"15px"}
+              sx={{
+                display: { xs: "none", sm: "none", md: "none", lg: "block" },
+              }}>
               <Typography marginBottom={"20px"} variant="h5">
-                ✩ {" ✩ " + oneMovie.rating}
+                ✩ {oneMovie.rating}
               </Typography>
-
-              <YouTube
-                videoId={oneMovie.trailer}
-                opts={{
-                  height: "425px",
-                  width: "650px",
-                  playerVars: {
-                    src: oneMovie.trailer,
-                    autoplay: 0,
-                  },
-                }}
-              />
+              <Box>
+                <YouTube
+                  videoId={oneMovie.trailer}
+                  opts={{
+                    height: "425px",
+                    width: "650px",
+                    playerVars: {
+                      src: oneMovie.trailer,
+                      autoplay: 0,
+                    },
+                  }}
+                />
+              </Box>
             </Box>
           </Container>
           <Box
@@ -77,9 +90,9 @@ const MovieAbout = ({}) => {
             flexDirection={"column"}
             alignItems={"center"}
             textAlign={"left"}
+            margin={"0 auto"}
             marginTop={"20px"}
-            maxWidth={"1000px"}
-            marginLeft={"220px"}>
+            maxWidth={"1000px"}>
             <Paper>
               <Typography padding={"20px"} variant="h5">
                 {oneMovie.description}

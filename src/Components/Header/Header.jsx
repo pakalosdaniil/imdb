@@ -5,23 +5,19 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { watchedListContext } from "../../Contexts/watchedListContext";
 import mainLogo from "../../images/IMDb-Logo.svg";
-import proLogo from "../../images/IMDb-Pro-Logo.svg";
-import { Button, Slider, Tooltip } from "@mui/material";
+import { Slider, Tooltip } from "@mui/material";
 import { moviesContext } from "../../Contexts/moviesContext";
 import React, { useContext, useEffect, useState } from "react";
 import { grey } from "@mui/material/colors";
+import MenuList from "../MenuList/MenuList";
+import { authContext } from "../../Contexts/authContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -35,7 +31,7 @@ const Search = styled("div")(({ theme }) => ({
   width: "100%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: "400px",
+    width: "700px",
   },
 }));
 
@@ -63,12 +59,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function Header() {
   const navigate = useNavigate();
-  const { count, getWatchedList } = useContext(watchedListContext);
-  useEffect(() => {
-    getWatchedList();
-  }, []);
+  const { currentUser, logOut } = useContext(authContext);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -108,8 +102,28 @@ export default function PrimarySearchAppBar() {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}>
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {currentUser ? (
+        <MenuItem onClick={handleMenuClose}>{currentUser.displayName}</MenuItem>
+      ) : null}
+
+      {currentUser ? (
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            logOut();
+          }}>
+          Logout
+        </MenuItem>
+      ) : (
+        <Link to="/login">
+          <MenuItem
+            onClick={() => {
+              handleMenuClose();
+            }}>
+            Log In
+          </MenuItem>
+        </Link>
+      )}
     </Menu>
   );
 
@@ -129,15 +143,6 @@ export default function PrimarySearchAppBar() {
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}>
-      <MenuItem onClick={() => navigate("/watched-list")}>
-        <IconButton size="large">
-          <Badge badgeContent={count} color="error">
-            <BookmarkBorderIcon />
-          </Badge>
-        </IconButton>
-        <p>Watch List</p>
-      </MenuItem>
-
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -181,7 +186,7 @@ export default function PrimarySearchAppBar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}>
+            sx={{ display: { xs: "none", sm: "none", lg: "flex" } }}>
             <Link to="/">
               <img
                 style={{
@@ -198,12 +203,12 @@ export default function PrimarySearchAppBar() {
             size="large"
             edge="start"
             color="inherit"
-            aria-label="open drawer"
-            style={{ width: "120px", height: "70px", marginLeft: "15px" }}
-            sx={{ mr: 2 }}>
-            <MenuIcon style={{ width: "30px", height: "30px" }} />
-            <Typography style={{ marginLeft: "15px", fontSize: "25px" }}>
-              Menu
+            aria-label="open drawer">
+            <MenuList style={{ width: "30px", height: "30px" }} />
+            <Typography
+              style={{ fontSize: "20px", marginRight: "30px" }}
+              sx={{ display: { xs: "none", sm: "none", lg: "flex" } }}>
+              MENU
             </Typography>
           </IconButton>
           <Search>
@@ -219,6 +224,7 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Tooltip title="Rating range">
             <Slider
+              sx={{ display: { xs: "none", md: "flex" } }}
               style={{
                 width: "140px",
                 marginLeft: "25px",
@@ -234,44 +240,9 @@ export default function PrimarySearchAppBar() {
               step={0.5}
             />
           </Tooltip>
-          <Link to="/payment">
-            <img
-              style={{ width: "120px", height: "70px", marginLeft: "15px" }}
-              src={proLogo}
-              alt=""
-            />
-          </Link>
-          <Button
-            variant="outlined"
-            sx={{
-              bgcolor: grey[900],
-              color: "white",
-              borderColor: "white",
-              "&:hover": {
-                backgroundColor: grey[200],
-                color: "black",
-                borderColor: grey[900],
-              },
-            }}
-            style={{ marginLeft: "20px" }}
-            onClick={() => navigate("/add-movie")}>
-            ADD MOVIE
-          </Button>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to="/watched-list">
-              <Tooltip title="Watchlist">
-                <IconButton
-                  size="large"
-                  style={{ marginRight: "15px" }}
-                  sx={{ borderColor: "white" }}>
-                  <Badge badgeContent={count} color="error">
-                    <BookmarkBorderIcon />
-                  </Badge>
-                </IconButton>
-              </Tooltip>
-            </Link>
             <IconButton
               size="large"
               edge="end"

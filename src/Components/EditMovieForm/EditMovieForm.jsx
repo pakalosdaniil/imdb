@@ -3,8 +3,24 @@ import { Box, Container } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { moviesContext } from "../../Contexts/moviesContext";
+import { grey, yellow } from "@mui/material/colors";
+import { styled } from "@mui/material/styles";
 
 const EditMovieForm = () => {
+  const CssTextField = styled(TextField, {
+    shouldForwardProp: props => props !== "focusColor",
+  })(p => ({
+    // input label when focused
+    "& label.Mui-focused": {
+      color: p.focusColor,
+    },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: p.focusColor,
+      },
+    },
+  }));
+
   const { getOneMovie, oneMovie, updatedMovie } = useContext(moviesContext);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -56,13 +72,17 @@ const EditMovieForm = () => {
 
   return (
     <>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" style={{ height: "700px" }}>
         <Box
+          sx={{ bgcolor: grey[200] }}
+          flexWrap={"wrap"}
+          justifyContent={"center"}
+          height={"100%"}
           padding={"30px"}
           display={"flex"}
           flexDirection={"column"}
           textAlign={"center"}>
-          <Typography variant="h4" component="h2">
+          <Typography variant="h4" component="h2" marginBottom={"20px"}>
             Edit movie
           </Typography>
 
@@ -70,9 +90,10 @@ const EditMovieForm = () => {
             value={title}
             onChange={e => setTitle(e.target.value)}
             style={{ margin: "10px" }}
-            id="standard-basic"
+            id="outlined-basic"
             label="Title"
-            variant="standard"
+            variant="outlined"
+            focusColor="#fbc02d"
           />
 
           <TextField
@@ -80,18 +101,20 @@ const EditMovieForm = () => {
             value={year}
             onChange={e => setYear(+e.target.value)}
             style={{ margin: "10px" }}
-            id="standard-basic"
+            id="outlined-basic"
             label="Year"
-            variant="standard"
+            variant="outlined"
+            focusColor="#fbc02d"
           />
 
           <TextField
             value={description}
             onChange={e => setDescription(e.target.value)}
             style={{ margin: "10px" }}
-            id="standard-basic"
+            id="outlined-basic"
             label="Description"
-            variant="standard"
+            variant="outlined"
+            focusColor="#fbc02d"
           />
 
           <TextField
@@ -99,34 +122,41 @@ const EditMovieForm = () => {
             value={rating}
             onChange={e => setRating(+e.target.value)}
             style={{ margin: "10px" }}
-            id="standard-basic"
+            id="outlined-basic"
             label="IMDb Rating"
-            variant="standard"
+            variant="outlined"
+            focusColor="#fbc02d"
           />
 
           <TextField
             value={cover}
             onChange={e => setCover(e.target.value)}
             style={{ margin: "10px" }}
-            id="standard-basic"
+            id="outlined-basic"
             label="Cover"
-            variant="standard"
+            variant="outlined"
+            focusColor="#fbc02d"
           />
 
           <TextField
             value={trailer}
             onChange={e => setTrailer(e.target.value)}
-            style={{ margin: "10px" }}
-            id="standard-basic"
+            style={{ margin: "10px", marginBottom: "30px" }}
+            id="outlined-basic"
             label="Trailer ID"
-            variant="standard"
+            variant="outlined"
+            focusColor="#fbc02d"
           />
 
           <Button
             onClick={handleValues}
             style={{ margin: "10px" }}
             variant="contained"
-            color="success">
+            sx={{
+              bgcolor: yellow[600],
+              color: "black",
+              "&:hover": { bgcolor: yellow[500] },
+            }}>
             Save
           </Button>
         </Box>

@@ -8,8 +8,56 @@
   font-size: 17px !important;
 }
 
+.App {
+  width: auto;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.FormGroup {
+  width: 400px;
+}
+
+.d-block {
+  height: 710px !important;
+  border-radius: 3px;
+  border: 1px solid grey;
+}
+
+.home-carousel {
+  width: 550px !important;
+  margin: 0 auto;
+}
+
 @media (max-width: 1200px) {
   .MuiCardMedia-img {
     object-fit: fill !important;
+  }
+}
+
+@media (max-width: 710px) {
+  .home-carousel {
+    width: 400px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-carousel {
+    width: 370px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-carousel {
+    width: 320px !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .home-carousel {
+    width: 290px !important;
   }
 }

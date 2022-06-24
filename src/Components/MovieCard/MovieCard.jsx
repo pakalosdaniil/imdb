@@ -2,13 +2,11 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { moviesContext } from "../../Contexts/moviesContext";
 import { watchedListContext } from "../../Contexts/watchedListContext";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
@@ -24,17 +22,9 @@ import "../../App.css";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { grey } from "@mui/material/colors";
 
 const MovieCard = ({ item }) => {
-  const opts = {
-    height: "494",
-    width: "350",
-    playerVars: {
-      src: item.trailer,
-      autoplay: 0,
-    },
-  };
-
   const [anchor, setAnchor] = useState(null);
   const isShareMenuOpen = Boolean(anchor);
   const handleShareMenuOpen = event => {
@@ -157,9 +147,9 @@ const MovieCard = ({ item }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton>
+        {/* <IconButton>
           <StarIcon />
-        </IconButton>
+        </IconButton> */}
         <Button
           onClick={() => {
             addMovieToWatchedList(item);
@@ -170,11 +160,11 @@ const MovieCard = ({ item }) => {
           {checkMovie ? (
             <BookmarkAddedIcon />
           ) : (
-            <BookmarkAddIcon sx={{ color: "gray" }} />
+            <BookmarkAddIcon sx={{ color: grey[600] }} />
           )}
         </Button>
         <Button size="small" onClick={() => navigate(`/movies/${item.id}`)}>
-          <MoreHorizIcon />
+          <MoreHorizIcon sx={{ color: grey[600] }} />
         </Button>
 
         <IconButton
